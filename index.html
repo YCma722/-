@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>此君书院 | 中国古典学最高殿堂</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;600;700&family=ZCOOL+XiaoWei&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #f7f5f0;
+      color: #2e3824;
+      font-family: 'Noto Serif SC', 'Times New Roman', '宋体', serif;
+      line-height: 1.7;
+      font-weight: 400;
+      scroll-behavior: smooth;
+    }
+
+    .bg-texture {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: radial-gradient(circle at 20% 30%, rgba(120, 140, 100, 0.08) 0%, transparent 30%),
+                        radial-gradient(circle at 80% 70%, rgba(100, 120, 80, 0.06) 0%, transparent 40%);
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .container {
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 0 28px;
+    }
+
+    header {
+      padding: 36px 0 20px;
+      border-bottom: 1px solid #c7c0ae;
+      text-align: center;
+      position: relative;
+    }
+
+    .school-name {
+      font-size: 3.5rem;
+      font-weight: 700;
+      letter-spacing: 8px;
+      color: #3a4a2a;
+      margin-bottom: 8px;
+      font-family: 'ZCOOL XiaoWei', 'Noto Serif SC', serif;
+      text-shadow: 1px 1px 0 rgba(180, 170, 140, 0.2);
+    }
+
+    .school-motto {
+      font-size: 1.2rem;
+      font-style: italic;
+      color: #6b7b5a;
+      letter-spacing: 3px;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+    }
+    .school-motto:before, .school-motto:after {
+      content: "";
+      display: inline-block;
+      width: 60px;
+      height: 1px;
+      background: #b9b292;
+    }
+
+    .nav-links {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 28px;
+      margin-top: 20px;
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: #4a5535;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+    .nav-links a {
+      text-decoration: none;
+      color: #4a5535;
+      padding-bottom: 4px;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.3s, color 0.3s;
+      cursor: pointer;
+    }
+    .nav-links a:hover {
+      border-bottom: 1px solid #7b8b5c;
+      color: #1e2b10;
+    }
+
+    .hero {
+      margin: 32px 0 40px;
+      background: linear-gradient(135deg, #e2e0d5 0%, #d9dbc4 100%);
+      border-radius: 2px;
+      padding: 48px 32px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      box-shadow: 0 12px 28px rgba(60, 60, 30, 0.08);
+      border: 1px solid #cdc9b3;
+    }
+
+    .hero h2 {
+      font-size: 2.4rem;
+      font-weight: 600;
+      color: #2b3b18;
+      margin-bottom: 16px;
+      letter-spacing: 2px;
+    }
+
+    .hero p {
+      max-width: 680px;
+      font-size: 1.1rem;
+      color: #4e5e38;
+      margin-bottom: 12px;
+    }
+
+    .badge-group {
+      display: flex;
+      gap: 24px;
+      margin-top: 20px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .badge {
+      background: #f3f0e7;
+      padding: 8px 20px;
+      border-radius: 40px;
+      font-size: 0.9rem;
+      color: #3a4823;
+      border: 1px solid #bdb78a;
+      letter-spacing: 1px;
+    }
+
+    section {
+      margin: 60px 0;
+    }
+
+    .section-title {
+      font-size: 2rem;
+      font-weight: 600;
+      color: #364422;
+      border-left: 6px solid #8b9a5e;
+      padding-left: 20px;
+      margin-bottom: 28px;
+      letter-spacing: 2px;
+    }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 28px;
+      margin-top: 20px;
+    }
+
+    .card {
+      background: #ffffff;
+      border: 1px solid #dbd5be;
+      padding: 24px 22px;
+      box-shadow: 0 8px 18px rgba(100, 90, 60, 0.06);
+      transition: transform 0.25s ease, box-shadow 0.3s;
+      border-radius: 4px;
+    }
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 28px rgba(80, 70, 40, 0.12);
+    }
+    .card h3 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: #3c4f24;
+      margin-bottom: 12px;
+    }
+
+    .stats-highlight {
+      background: #f4f1e8;
+      padding: 28px 24px;
+      border-radius: 4px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      text-align: center;
+      margin: 32px 0;
+      border: 1px solid #d8cfaa;
+    }
+    .stat-item h4 {
+      font-size: 2.3rem;
+      font-weight: 700;
+      color: #40522a;
+    }
+    .stat-item p {
+      color: #5f6d44;
+    }
+
+    .table-wrapper {
+      overflow-x: auto;
+      margin: 16px 0;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #fdfdf8;
+      border: 1px solid #cdc5a5;
+      font-size: 0.9rem;
+    }
+    th {
+      background: #e3e0cd;
+      font-weight: 600;
+      padding: 10px 12px;
+      color: #2d391b;
+      text-align: left;
+    }
+    td {
+      padding: 10px 12px;
+      border-bottom: 1px solid #e2ddc5;
+      color: #414d32;
+      vertical-align: top;
+    }
+
+    /* 可展开卡片 */
+    .expand-card {
+      background: #ffffff;
+      border: 1px solid #dbd5be;
+      margin-bottom: 24px;
+      border-radius: 4px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(90, 80, 50, 0.05);
+    }
+    .expand-header {
+      padding: 18px 24px;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #fafaf5;
+      transition: background 0.2s;
+      border-bottom: 1px solid #e7e1c5;
+    }
+    .expand-header:hover {
+      background: #f2efe2;
+    }
+    .expand-header h3 {
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: #3c4f24;
+      margin: 0;
+    }
+    .expand-icon {
+      font-size: 1.6rem;
+      color: #7b8b5c;
+      transition: transform 0.3s;
+    }
+    .expand-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.5s ease-in-out;
+      background: #fffef9;
+    }
+    .expand-content.open {
+      max-height: 8000px;
+    }
+    .expand-inner {
+      padding: 20px 24px;
+      border-top: 1px solid #ede7cc;
+    }
+    .expand-inner h4 {
+      font-weight: 600;
+      color: #4a5e2f;
+      margin: 20px 0 10px;
+      font-size: 1.1rem;
+      border-bottom: 1px dashed #d8cfaa;
+      padding-bottom: 4px;
+    }
+    .expand-inner table {
+      margin: 10px 0 16px;
+      width: 100%;
+    }
+    .expand-inner table th, .expand-inner table td {
+      padding: 8px 10px;
+      font-size: 0.9rem;
+    }
+    .expand-inner p {
+      margin: 10px 0;
+    }
+    .expand-inner ul {
+      padding-left: 24px;
+      color: #4d5a38;
+    }
+
+    .footer {
+      margin-top: 60px;
+      padding: 40px 0 30px;
+      border-top: 1px solid #c7c0ae;
+      text-align: center;
+      color: #5f6845;
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 640px) {
+      .school-name {
+        font-size: 2.4rem;
+        letter-spacing: 4px;
+      }
+      .nav-links {
+        gap: 14px;
+        font-size: 0.85rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-texture"></div>
+  <div class="container">
+    
+    <header>
+      <div class="school-name">此君书院</div>
+      <div class="school-motto">如竹虚心 · 如木守拙</div>
+      <div class="nav-links">
+        <a href="#about">书院总览</a>
+        <a href="#campus">山水校园</a>
+        <a href="#admission">招生选拔</a>
+        <a href="#programs">培养方案</a>
+        <a href="#academics">学术统系</a>
+        <a href="#journals">学刊矩阵</a>
+        <a href="#life">竹林日常</a>
+      </div>
+    </header>
+
+    <div class="hero">
+      <h2>中国古典学最高殿堂</h2>
+      <p>与北京大学、清华大学并称三甲 · 小·精·纯粹</p>
+      <p>湖心泛舟 · 竹林木屋 · 岩洞藏书 · 花海通幽</p>
+      <div class="badge-group">
+        <span class="badge">本硕博博士后一体化</span>
+        <span class="badge">一对一导师制</span>
+        <span class="badge">高考10% + 书院考核90%</span>
+        <span class="badge">保研/保博率100%</span>
+      </div>
+    </div>
+
+    <section id="about">
+      <div class="section-title">书院总览</div>
+      <div class="card-grid">
+        <div class="card">
+          <h3>🏛️ 定位</h3>
+          <p>此君书院与北大、清华并称中国最高学府，却独守“小精美”之道。不设工科商科，唯以中国古代文学、中国古典文献学、汉语言文字学三科为根基。</p>
+        </div>
+        <div class="card">
+          <h3>👥 规模</h3>
+          <p>本科每届30人（每专业10人），硕士30人，博士在读不逾30人。教师34人，师生比约1:8。</p>
+        </div>
+        <div class="card">
+          <h3>🌿 精神</h3>
+          <p>书院以竹为象，取“此君”之名。创始人柴士金与阿宇为至交，将兄弟情谊外化为竹林木屋间的学术乌托邦。</p>
+        </div>
+      </div>
+      <div class="stats-highlight">
+        <div class="stat-item"><h4>270</h4><p>在校生总数</p></div>
+        <div class="stat-item"><h4>34</h4><p>师资(含院长)</p></div>
+        <div class="stat-item"><h4>4</h4><p>CSSCI核心期刊</p></div>
+        <div class="stat-item"><h4>100%</h4><p>升学率</p></div>
+      </div>
+    </section>
+
+    <section id="campus">
+      <div class="section-title">山水校园</div>
+      <div class="card-grid">
+        <div class="card"><h3>🏞️ 湖心</h3><p>校园以湖为核心，可泛小舟。沿湖设“切问亭”“近思亭”“知鱼亭”“望岳亭”。</p></div>
+        <div class="card"><h3>🎋 北·竹林木屋</h3><p>四十余间单人宿舍隐于竹林。独立卫浴空调，仿古家具，壁悬书法。</p></div>
+        <div class="card"><h3>📚 西·岩洞藏书</h3><p>大岩洞为藏书楼，书架盘旋至洞顶；小岩洞为单人自修室，一桌一椅一灯。</p></div>
+        <div class="card"><h3>🏡 东·院落教学</h3><p>白墙黛瓦院落集群。明伦堂授课，后园设古籍修复室与刻书工坊。</p></div>
+      </div>
+    </section>
+
+    <section id="admission">
+      <div class="section-title">招生选拔</div>
+      <div class="card">
+        <h3>📜 提前批A · 高考10% + 书院考核90%</h3>
+        <p><strong>方向：</strong>文学（古代文学）、文献（古典文献学）、语言（汉语言文字学），各招10人。</p>
+        <p><strong>初试：</strong>分方向笔试（作品解读/材料辨析/语言分析）<br>
+        <strong>复试：</strong>深度笔试+实践（竹林即兴诗文/古籍鉴定/古文字临摹）<br>
+        <strong>终试：</strong>院长阿宇、副院长柴士金及三位导师亲面，四十分钟识其人、知其心。</p>
+        <p style="margin-top:12px; font-style:italic;">宁缺毋滥，十席不必年年录满。考核期间考生入住竹林木屋，食宿全免。</p>
+      </div>
+    </section>
+
+    <!-- 培养方案（可展开，表格化） -->
+    <section id="programs">
+      <div class="section-title">培养方案（点击展开详情）</div>
+      
+      <!-- 中国古代文学 -->
+      <div class="expand-card">
+        <div class="expand-header" onclick="toggleExpand(this)">
+          <h3>📖 中国古代文学（本科·五年制）</h3>
+          <span class="expand-icon">+</span>
+        </div>
+        <div class="expand-content">
+          <div class="expand-inner">
+            <p><strong>招生：</strong>每届10人 | <strong>总学分：</strong>270 | <strong>总课时：</strong>4320课时</p>
+            <h4>📘 分期文学史（必修·8门）</h4>
+            <div class="table-wrapper"><table>
+              <tr><th>课程名称</th><th>课时</th><th>学分</th></tr>
+              <tr><td>先秦文学史</td><td>64课时</td><td>4</td></tr>
+              <tr><td>两汉文学史</td><td>64课时</td><td>4</td></tr>
+              <tr><td>魏晋南北朝文学史</td><td>96课时</td><td>6</td></tr>
+              <tr><td>唐代文学史</td><td>96课时</td><td>6</td></tr>
+              <tr><td>宋代文学史</td><td>96课时</td><td>6</td></tr>
+              <tr><td>元代文学史</td><td>64课时</td><td>4</td></tr>
+              <tr><td>明代文学史</td><td>96课时</td><td>6</td></tr>
+              <tr><td>清代文学史</td><td>96课时</td><td>6</td></tr>
+            </table></div>
+            <h4>📗 分期原典精读（必修·27门）</h4>
+            <div class="table-wrapper"><table>
+              <tr><th>课程名称</th><th>课时</th><th>学分</th><th>课程名称</th><th>课时</th><th>学分</th></tr>
+              <tr><td>先秦诗歌</td><td>128课时</td><td>8</td><td>宋代小说</td><td>64课时</td><td>4</td></tr>
+              <tr><td>先秦散文</td><td>96课时</td><td>6</td><td>元代诗歌</td><td>64课时</td><td>4</td></tr>
+              <tr><td>两汉诗歌</td><td>64课时</td><td>4</td><td>元代散文</td><td>64课时</td><td>4</td></tr>
+              <tr><td>两汉散文</td><td>96课时</td><td>6</td><td>元代戏剧</td><td>128课时</td><td>8</td></tr>
+              <tr><td>魏晋南北朝诗歌</td><td>128课时</td><td>8</td><td>明代诗歌</td><td>64课时</td><td>4</td></tr>
+              <tr><td>魏晋南北朝散文</td><td>64课时</td><td>4</td><td>明代散文</td><td>64课时</td><td>4</td></tr>
+              <tr><td>魏晋南北朝小说</td><td>64课时</td><td>4</td><td>明代小说(上)</td><td>128课时</td><td>8</td></tr>
+              <tr><td>唐代诗歌(上)</td><td>128课时</td><td>8</td><td>明代小说(下)</td><td>128课时</td><td>8</td></tr>
+              <tr><td>唐代诗歌(下)</td><td>128课时</td><td>8</td><td>明代戏剧</td><td>96课时</td><td>6</td></tr>
+              <tr><td>唐代散文</td><td>96课时</td><td>6</td><td>清代诗歌</td><td>64课时</td><td>4</td></tr>
+              <tr><td>唐代小说</td><td>64课时</td><td>4</td><td>清代散文</td><td>64课时</td><td>4</td></tr>
+              <tr><td>宋代诗歌(上)</td><td>128课时</td><td>8</td><td>清代小说(上)</td><td>128课时</td><td>8</td></tr>
+              <tr><td>宋代诗歌(下)</td><td>128课时</td><td>8</td><td>清代小说(下)</td><td>128课时</td><td>8</td></tr>
+              <tr><td>宋代散文</td><td>96课时</td><td>6</td><td>清代戏剧</td><td>96课时</td><td>6</td></tr>
+            </table></div>
+            <h4>📙 其他必修系列</h4>
+            <div class="table-wrapper"><table>
+              <tr><th>系列</th><th>课程名称</th><th>课时</th><th>学分</th></tr>
+              <tr><td rowspan="4">文学批评史</td><td>先秦两汉文学批评史</td><td>64课时</td><td>4</td></tr>
+              <tr><td>魏晋南北朝文学批评史</td><td>96课时</td><td>6</td></tr>
+              <tr><td>唐宋文学批评史</td><td>96课时</td><td>6</td></tr>
+              <tr><td>元明清文学批评史</td><td>64课时</td><td>4</td></tr>
+              <tr><td rowspan="4">古代汉语工具课</td><td>文字学</td><td>96课时</td><td>6</td></tr>
+              <tr><td>音韵学</td><td>96课时</td><td>6</td></tr>
+              <tr><td>训诂学</td><td>96课时</td><td>6</td></tr>
+              <tr><td>文献学</td><td>96课时</td><td>6</td></tr>
+              <tr><td rowspan="4">学术导入系列</td><td>学术入门：如何读一本书</td><td>64课时</td><td>4</td></tr>
+              <tr><td>古典文献检索与利用</td><td>64课时</td><td>4</td></tr>
+              <tr><td>学术史视野下的中国古代文学研究</td><td>64课时</td><td>4</td></tr>
+              <tr><td>论文写作与学术规范</td><td>64课时</td><td>4</td></tr>
+            </table></div>
+            <p><strong>学年学分分布：</strong>第一年42学分 / 第二年50学分 / 第三年58学分 / 第四年56学分 / 第五年64学分</p>
+            <p><em>每日9:00-12:00 / 14:00-17:00授课，晚间竹林雅集。无考试周，结课论文即满分。</em></p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 中国古典文献学 -->
+      <div class="expand-card">
+        <div class="expand-header" onclick="toggleExpand(this)">
+          <h3>📚 中国古典文献学（本科·五年制）</h3>
+          <span class="expand-icon">+</span>
+        </div>
+        <div class="expand-content">
+          <div class="expand-inner">
+            <p><strong>招生：</strong>每届10人 | <strong>总学分：</strong>254 | <strong>总课时：</strong>4064课时</p>
+            <h4>📘 文献学通论（7门）</h4>
+            <div class="table-wrapper"><table>
+              <tr><th>课程名称</th><th>课时</th><th>学分</th></tr>
+              <tr><td>先秦两汉文献学概论</td><td>96课时</td><td>6</td></tr>
+              <tr><td>魏晋南北朝文献学概论</td><td>64课时</td><td>4</td></tr>
+              <tr><td>隋唐五代文献学概论</td><td>96课时</td><td>6</td></tr>
+              <tr><td>宋元文献学概论</td><td>96课时</td><td>6</td></tr>
+              <tr><td>明代文献学概论</td><td>64课时</td><td>4</td></tr>
+              <tr><td>清代文献学概论</td><td>128课时</td><td>8</td></tr>
+              <tr><td>近代文献学概论</td><td>64课时</td><td>4</td></tr>
+            </table></div>
+            <h4>📗 核心方法（8门）</h4>
+            <div class="table-wrapper"><table>
+              <tr><th>课程名称</th><th>课时</th><th>学分</th></tr>
+              <tr><td>版本学</td><td>128课时</td><td>8</td></tr>
+              <tr><td>目录学</td><td>128课时</td><td>8</td></tr>
+              <tr><td>校勘学</td><td>128课时</td><td>8</td></tr>
+              <tr><td>辑佚学</td><td>128课时</td><td>8</td></tr>
+              <tr><td>辨伪学</td><td>128课时</td><td>8</td></tr>
+              <tr><td>编纂学</td><td>96课时</td><td>6</td></tr>
+              <tr><td>典藏学与古籍保护</td><td>96课时</td><td>6</td></tr>
+              <tr><td>出土文献概论</td><td>128课时</td><td>8</td></tr>
+            </table></div>
+            <h4>📙 专题进阶（7门）</h4>
+            <div class="table-wrapper"><table>
+              <tr><th>课程名称</th><th>课时</th><th>学分</th></tr>
+              <tr><td>版本鉴定实践</td><td>96课时</td><td>6</td></tr>
+              <tr><td>《四库全书总目》研读</td><td>96课时</td><td>6</td></tr>
+              <tr><td>校勘学经典案例研究</td><td>96课时</td><td>6</td></tr>
+              <tr><td>石刻文献研究</td><td>96课时</td><td>6</td></tr>
+              <tr><td>敦煌文献概论</td><td>96课时</td><td>6</td></tr>
+              <tr><td>域外汉籍概论</td><td>96课时</td><td>6</td></tr>
+              <tr><td>简帛文献概论</td><td>96课时</td><td>6</td></tr>
+            </table></div>
+            <h4>📕 分期文献精读（10门）</h4>
+            <div class="table-wrapper"><table>
+              <tr><th>课程名称</th><th>课时</th><th>学分</th></tr>
+              <tr><td>先秦文献精读（上）：经部</td><td>128课时</td><td>8</td></tr>
+              <tr><td>先秦文献精读（下）：子部</td><td>128课时</td><td>8</td></tr>
+              <tr><td>两汉文献精读</td><td>128课时</td><td>8</td></tr>
+              <tr><td>魏晋南北朝文献精读</td><td>96课时</td><td>6</td></tr>
+              <tr><td>隋唐五代文献精读</td><td>128课时</td><td>8</td></tr>
+              <tr><td>宋辽金文献精读</td><td>128课时</td><td>8</td></tr>
+              <tr><td>元代文献精读</td><td>64课时</td><td>4</td></tr>
+              <tr><td>明代文献精读</td><td>128课时</td><td>8</td></tr>
+              <tr><td>清代文献精读（上）：别集与总集</td><td>128课时</td><td>8</td></tr>
+              <tr><td>清代文献精读（下）：丛书与类书</td><td>128课时</td><td>8</td></tr>
+            </table></div>
+            <p><strong>工具课：</strong>文字学96课时、音韵学96课时、训诂学96课时、文献学基础96课时</p>
+            <p><strong>学年学分分布：</strong>第一年46学分 / 第二年54学分 / 第三年56学分 / 第四年50学分 / 第五年48学分</p>
+            <p><em>每日9:00-12:00 / 14:00-17:00授课，晚间竹林雅集。无考试周，结课论文即满分。</em></p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 汉语言文字学 -->
+      <div class="expand-card">
+        <div class="expand-header" onclick="toggleExpand(this)">
+          <h3>🔤 汉语言文字学（本科·五年制）</h3>
+          <span class="expand-icon">+</span>
+        </div>
+        <div class="expand-content">
+          <div class="expand-inner">
+            <p><strong>招生：</strong>每届10人 | <strong>总学分：</strong>244 | <strong>总课时：</strong>3904课时</p>
+            <h4>📘 汉语史（7门）</h4>
+            <div class="table-wrapper"><table>
+              <tr><th>课程名称</th><th>课时</th><th>学分</th></tr>
+              <tr><td>上古汉语（上）：周秦</td><td>128课时</td><td>8</td></tr>
+              <tr><td>上古汉语（下）：两汉</td><td>128课时</td><td>8</td></tr>
+              <tr><td>中古汉语（上）：魏晋南北朝</td><td>96课时</td><td>6</td></tr>
+              <tr><td>中古汉语（下）：隋唐五代</td><td>96课时</td><td>6</td></tr>
+              <tr><td>近代汉语（上）：宋元</td><td>96课时</td><td>6</td></tr>
+              <tr><td>近代汉语（下）：明清</td><td>96课时</td><td>6</td></tr>
+              <tr><td>现代汉语概论</td><td>64课时</td><td>4</td></tr>
+            </table></div>
+            <h4>📗 文字学（5门）</h4>
+            <div class="table-wrapper"><table>
+              <tr><th>课程名称</th><th>课时</th><th>学分</th></tr>
+              <tr><td>甲骨文研究</td><td>96课时</td><td>6</td></tr>
+              <tr><td>金文研究</td><td>96课时</td><td>6</td></tr>
+              <tr><td>战国文字研究</td><td>96课时</td><td>6</td></tr>
+              <tr><td>《说文解字》精读</td><td>128课时</td><td>8</td></tr>
+              <tr><td>古文字选读</td><td>64课时</td><td>4</td></tr>
+            </table></div>
+            <h4>📙 音韵学（4门）</h4>
+            <div class="table-wrapper"><table>
+              <tr><th>课程名称</th><th>课时</th><th>学分</th></tr>
+              <tr><td>上古音研究</td><td>128课时</td><td>8</td></tr>
+              <tr><td>中古音研究</td><td>128课时</td><td>8</td></tr>
+              <tr><td>近代音研究</td><td>128课时</td><td>8</td></tr>
+              <tr><td>等韵学</td><td>64课时</td><td>4</td></tr>
+            </table></div>
+            <h4>📕 训诂与词汇（4门）</h4>
+            <div class="table-wrapper"><table>
+              <tr><th>课程名称</th><th>课时</th><th>学分</th></tr>
+              <tr><td>训诂学原理</td><td>128课时</td><td>8</td></tr>
+              <tr><td>训诂学经典文献研读</td><td>96课时</td><td>6</td></tr>
+              <tr><td>汉语词汇史</td><td>96课时</td><td>6</td></tr>
+              <tr><td>汉语词义学</td><td>96课时</td><td>6</td></tr>
+            </table></div>
+            <p><strong>语法/方言：</strong>古代汉语语法96课时、现代汉语语法96课时、汉语语法学史64课时 / 汉语方言学96课时、方言调查方法64课时、语言学概论96课时</p>
+            <p><strong>原典精读：</strong>《诗经》语言96课时、《楚辞》语言64课时、先秦诸子语言128课时、《史记》《汉书》语言96课时、中古译经语言64课时、唐宋诗词语言96课时、元明戏曲语言64课时、明清小说语言96课时</p>
+            <p><strong>学年学分分布：</strong>第一年46学分 / 第二年54学分 / 第三年58学分 / 第四年52学分 / 第五年28学分（下学期为专题研习）</p>
+            <p><em>每日9:00-12:00 / 14:00-17:00授课，晚间竹林雅集。无考试周，结课论文即满分。</em></p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 硕士 -->
+      <div class="expand-card">
+        <div class="expand-header" onclick="toggleExpand(this)">
+          <h3>🎓 中国古典学（硕士·三年制）</h3>
+          <span class="expand-icon">+</span>
+        </div>
+        <div class="expand-content">
+          <div class="expand-inner">
+            <p><strong>招生：</strong>每届30人（三方向各10人） | <strong>总学分：</strong>108</p>
+            <h4>核心研讨课（必修·4门）</h4>
+            <div class="table-wrapper"><table>
+              <tr><th>课程名称</th><th>课时</th><th>学分</th></tr>
+              <tr><td>中国古典学导论</td><td>64课时</td><td>4</td></tr>
+              <tr><td>原典会读（上）：经部与子部</td><td>128课时</td><td>8</td></tr>
+              <tr><td>原典会读（下）：史部与集部</td><td>128课时</td><td>8</td></tr>
+              <tr><td>古典学研究方法</td><td>128课时</td><td>8</td></tr>
+            </table></div>
+            <h4>融合专题系列（必修·6门）</h4>
+            <div class="table-wrapper"><table>
+              <tr><th>课程名称</th><th>课时</th><th>学分</th></tr>
+              <tr><td>经学文献与经义诠释</td><td>96课时</td><td>6</td></tr>
+              <tr><td>出土文献与传世典籍互证研究</td><td>96课时</td><td>6</td></tr>
+              <tr><td>版本学与文学文本研究</td><td>96课时</td><td>6</td></tr>
+              <tr><td>汉语史与中国古代文学语言研究</td><td>96课时</td><td>6</td></tr>
+              <tr><td>目录学与学术史</td><td>96课时</td><td>6</td></tr>
+              <tr><td>古典注释传统研究</td><td>96课时</td><td>6</td></tr>
+            </table></div>
+            <h4>专攻方向课程（选修1-2门）</h4>
+            <div class="table-wrapper"><table>
+              <tr><th>方向</th><th>课程名称</th><th>课时</th><th>学分</th></tr>
+              <tr><td rowspan="2">中国古代文学方向</td><td>文学专题研究</td><td>128课时</td><td>8</td></tr>
+              <tr><td>文学文献研读</td><td>128课时</td><td>8</td></tr>
+              <tr><td rowspan="2">中国古典文献学方向</td><td>文献学专题研究</td><td>128课时</td><td>8</td></tr>
+              <tr><td>文献整理实践</td><td>128课时</td><td>8</td></tr>
+              <tr><td rowspan="2">汉语言文字学方向</td><td>语言文字专题研究</td><td>128课时</td><td>8</td></tr>
+              <tr><td>古文献语言研究</td><td>128课时</td><td>8</td></tr>
+            </table></div>
+            <p>学位论文20学分。仅面向本校本科毕业生招生。</p>
+            <p><em>每日9:00-12:00 / 14:00-17:00授课，晚间竹林雅集。无考试周，结课论文即满分。</em></p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 博士 -->
+      <div class="expand-card">
+        <div class="expand-header" onclick="toggleExpand(this)">
+          <h3>🏅 中国古典学（博士·三至五年）</h3>
+          <span class="expand-icon">+</span>
+        </div>
+        <div class="expand-content">
+          <div class="expand-inner">
+            <p><strong>招生：</strong>全院在读不逾30人 | 不设集体授课，以独立研究与导师指导为核心。</p>
+            <p>导师由阿宇、柴士金共同担任。每学期末举行博士会讲，书院资助一至两次学术旅行。</p>
+            <p>学位论文选题在中国古典学范围内，字数不限。预答辩与正式答辩两环节，答辩委员会五人（校外专家≥2）。</p>
+            <p>仅面向本校硕士毕业生招生。</p>
+            <p><em>每日9:00-12:00 / 14:00-17:00为研究时间，晚间竹林雅集。无考试周，以博士会讲与学位论文为核心评价。</em></p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 博士后 -->
+      <div class="expand-card">
+        <div class="expand-header" onclick="toggleExpand(this)">
+          <h3>📜 中国古典学博士后流动站</h3>
+          <span class="expand-icon">+</span>
+        </div>
+        <div class="expand-content">
+          <div class="expand-inner">
+            <p><strong>在站规模：</strong>不逾10人 | <strong>期限：</strong>二至三年</p>
+            <p>核心任务为完成一部学术专著（十万字以上）。合作导师一对一，每月面谈。</p>
+            <p>可申请赴海内外访书、查档或短期访学。学期末举行博士后报告会，设“此君夜话”学术沙龙。</p>
+            <p>出站后择优留校任教。仅面向本校博士毕业生招收。</p>
+            <p><em>自主安排研究时间，可参与晚间竹林雅集与“此君夜话”。以学术专著书稿为核心成果。</em></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="academics">
+      <div class="section-title">学术统系全貌</div>
+      <div class="table-wrapper">
+        <table>
+          <tr><th>阶段</th><th>专业/方向</th><th>年限</th><th>规模</th><th>要旨</th></tr>
+          <tr><td>本科</td><td>古代文学·文献学·语言文字学</td><td>5年</td><td>每届30人</td><td>分科深耕，一对一导师</td></tr>
+          <tr><td>硕士</td><td>中国古典学（三方向）</td><td>3年</td><td>每届30人</td><td>三科融通，专攻深化</td></tr>
+          <tr><td>博士</td><td>中国古典学</td><td>3-5年</td><td>在读≤30人</td><td>成一家之言，博士会讲</td></tr>
+          <tr><td>博士后</td><td>中国古典学流动站</td><td>2-3年</td><td>在站≤10人</td><td>由专返博，专著淬炼</td></tr>
+        </table>
+      </div>
+    </section>
+
+    <section id="journals">
+      <div class="section-title">四大学刊 (CSSCI核心)</div>
+      <div class="card-grid">
+        <div class="card"><h3>《此君学报》</h3><p>中国古典学综合 · 季刊<br>跨学科互证，古典学最高平台</p></div>
+        <div class="card"><h3>《文心》</h3><p>中国古代文学 · 季刊<br>文本细读，审美阐释</p></div>
+        <div class="card"><h3>《考据》</h3><p>中国古典文献学 · 季刊<br>版本目录，实证考辨</p></div>
+        <div class="card"><h3>《故训》</h3><p>汉语言文字学 · 季刊<br>古文字、音韵、训诂</p></div>
+      </div>
+    </section>
+
+    <section id="life">
+      <div class="section-title">竹林日常</div>
+      <div class="card-grid">
+        <div class="card"><h3>🛖 住宿</h3><p>竹林木屋单人单间，仿古家具，独立卫浴空调。壁悬书法一幅。</p></div>
+        <div class="card"><h3>🍵 雅集</h3><p>每晚19:00-21:00，活动中心大木屋。清茶、吟诵、围棋、辩难。</p></div>
+        <div class="card"><h3>📖 考核</h3><p>无考试周。结课论文自拟题目，提交即满分。所有学生皆为满分。</p></div>
+        <div class="card"><h3>⛰️ 研学</h3><p>本科公费名山大川学术旅行。博士设学术旅行资助。</p></div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-title">院务委员会</div>
+      <div class="card">
+        <p><strong>构成：</strong>院长阿宇、副院长柴士金 + 4名教师代表 + 4名学生代表（本/硕/博）</p>
+        <p>重大事务须经委员会表决，三分之二以上赞成通过。</p>
+        <p style="margin-top:12px;">教师34人：学术导师30人（三方向各10人），教学秘书1人，行政秘书1人。</p>
+      </div>
+    </section>
+
+    <div class="footer">
+      <p>此君书院 · 中国古典学精神家园</p>
+      <p style="font-size:0.8rem; margin-top:6px;">湖光竹影间，学问与情谊同修 · 招生仅提前批A</p>
+      <p style="margin-top:12px; font-style:italic;">“此处有茂林修竹，其人如美玉精金”</p>
+    </div>
+  </div>
+
+  <script>
+    function toggleExpand(header) {
+      const content = header.nextElementSibling;
+      const icon = header.querySelector('.expand-icon');
+      if (content.classList.contains('open')) {
+        content.classList.remove('open');
+        icon.textContent = '+';
+      } else {
+        content.classList.add('open');
+        icon.textContent = '−';
+      }
+    }
+  </script>
+</body>
+</html>
